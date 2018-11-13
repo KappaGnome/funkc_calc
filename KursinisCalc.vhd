@@ -8,11 +8,9 @@ entity FCalc is
 			--CLOCKAS--
 			CLOCK_50 : in STD_LOGIC;
 			--LEDAI--
-			LEDG1 : out STD_LOGIC_VECTOR(3 DOWNTO 0);
-			LEDG2 : out STD_LOGIC_VECTOR(9 DOWNTO 6)
+			LEDG : out STD_LOGIC_VECTOR (9 DOWNTO 0);
 			--SWITCHAI--
-			SW1 : in STD_LOGIC_VECTOR(9 DOWNTO 6);
-			SW2 : in STD_LOGIC_VECTOR(3 DOWNTO 0);
+			SW : in STD_LOGIC_VECTOR(9 DOWNTO 0);
 			--7SEG DISP--
 			HEX : out STD_LOGIC_VECTOR(3 DOWNTO 0)
 		);
@@ -23,21 +21,26 @@ architecture main of Fcalc is
 	shared variable SK1: integer RANGE 0 TO 10 :=0;
 	shared variable SK2: integer RANGE 0 TO 10 :=0;
 	shared variable REZ: integer RANGE 0 TO 3300 :=0;
-	shared 
 	signal dbnc, flag: STD_LOGIC;
 	
+	alias SW1 is SW(9 DOWNTO 6);
+	alias SW2 is SW(3 DOWNTO 0);
+	alias LEDG2 is LEDG(3 DOWNTO 0);
+	alias LEDG1 is LEDG(9 DOWNTO 6);
 	alias cl is CLOCK_50;
 begin
 	process(cl)
 		begin
-				--if (dbnc = '0') then
+			if (rising_edge(cl)) then
 					if(SW1 /= "0000" and SW1 <= "1010") then
-						SK1 <= conv_integer(SW1);
+						SK1 := conv_integer(SW1);
 					end if;
 					if(SW2 /= "0000" and SW1 <= "1010")	then
-						SK2 <= conv_integer(SW2);
+						SK2 := conv_integer(SW2);
 					end if;
 					LEDG1 <= SW1;
 					LEDG2 <= SW2;
-					REZ <= 3*SK1*SK1+300*SK2;
+					REZ := 3*SK1*SK1+300*SK2;
+			end if;
 	end process;
+end main;
