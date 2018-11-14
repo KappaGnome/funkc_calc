@@ -2,8 +2,9 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 use IEEE.STD_LOGIC_ARITH;
+use IEEE.NUMERIC_STD.ALL;
 
-entity FCalc is
+entity KursinisCalc is
 		Port(
 			--CLOCKAS--
 			CLOCK_50 : in STD_LOGIC;
@@ -19,12 +20,13 @@ entity FCalc is
 		);
 end entity;
 
-architecture main of Fcalc is
+architecture main of KursinisCalc is
 	shared variable cnt: integer RANGE 0 TO 50000000 :=0;
 	shared variable SK1: integer RANGE 0 TO 10 :=0;
 	shared variable SK2: integer RANGE 0 TO 10 :=0;
 	shared variable REZ: integer RANGE 0 TO 3300 :=0;
 	signal dbnc, flag: STD_LOGIC;
+	shared variable REZBIN: STD_LOGIC_VECTOR(15 DOWNTO 0);
 	
 	alias SW1 is SW(9 DOWNTO 6);
 	alias SW2 is SW(3 DOWNTO 0);
@@ -44,6 +46,7 @@ begin
 					LEDG1 <= SW1;
 					LEDG2 <= SW2;
 					REZ := 3*SK1*SK1+300*SK2;
+					REZBIN := std_logic_vector(to_unsigned(REZ,16));
 			end if;
 	end process;
 end main;
