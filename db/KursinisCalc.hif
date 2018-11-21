@@ -1526,126 +1526,6 @@ data0
 
 # end
 # entity
-to_7seg4
-# storage
-db|KursinisCalc.(10).cnf
-db|KursinisCalc.(10).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-seg74.vhd
-ee9cdacdf36b39c85f4693749f8cb44
-5
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-}
-# user_parameter {
- constraint(d)
-3 downto 0
-PARAMETER_STRING
-USR
- constraint(seg74)
-7 downto 0
-PARAMETER_STRING
-USR
-}
-# lmf
-|altera|10.1|quartus|lmf|maxplus2.lmf
-a36c8ec425c8a2589af98b2d4daabc3
-# macro_sequence
-
-# end
-# entity
-to_7seg2
-# storage
-db|KursinisCalc.(8).cnf
-db|KursinisCalc.(8).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-seg72.vhd
-4454815d829f6d9742a06a29431e54cd
-5
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-}
-# user_parameter {
- constraint(b)
-3 downto 0
-PARAMETER_STRING
-USR
- constraint(seg72)
-7 downto 0
-PARAMETER_STRING
-USR
-}
-# lmf
-|altera|10.1|quartus|lmf|maxplus2.lmf
-a36c8ec425c8a2589af98b2d4daabc3
-# macro_sequence
-
-# end
-# entity
-to_7seg3
-# storage
-db|KursinisCalc.(9).cnf
-db|KursinisCalc.(9).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-seg73.vhd
-1320b34d3f9022b73f9344955ab6a2
-5
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-}
-# user_parameter {
- constraint(c)
-3 downto 0
-PARAMETER_STRING
-USR
- constraint(seg73)
-7 downto 0
-PARAMETER_STRING
-USR
-}
-# lmf
-|altera|10.1|quartus|lmf|maxplus2.lmf
-a36c8ec425c8a2589af98b2d4daabc3
-# macro_sequence
-
-# end
-# entity
 lpm_mult
 # storage
 db|KursinisCalc.(18).cnf
@@ -2384,66 +2264,6 @@ a36c8ec425c8a2589af98b2d4daabc3
 
 # end
 # entity
-binary_bcd
-# storage
-db|KursinisCalc.(23).cnf
-db|KursinisCalc.(23).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-bin2bcd.vhd
-89d78c664c2f659f0de28af6a1b66a
-5
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-}
-# user_parameter {
-N
-16
-PARAMETER_SIGNED_DEC
-DEF
- constraint(binary_in)
-15 downto 0
-PARAMETER_STRING
-USR
- constraint(bcd0)
-3 downto 0
-PARAMETER_STRING
-USR
- constraint(bcd1)
-3 downto 0
-PARAMETER_STRING
-USR
- constraint(bcd2)
-3 downto 0
-PARAMETER_STRING
-USR
- constraint(bcd3)
-3 downto 0
-PARAMETER_STRING
-USR
- constraint(bcd4)
-3 downto 0
-PARAMETER_STRING
-USR
-}
-# lmf
-|altera|10.1|quartus|lmf|maxplus2.lmf
-a36c8ec425c8a2589af98b2d4daabc3
-# macro_sequence
-
-# end
-# entity
 to_7seg
 # storage
 db|KursinisCalc.(1).cnf
@@ -2490,6 +2310,57 @@ a36c8ec425c8a2589af98b2d4daabc3
 
 # end
 # entity
+Binary_to_BCD
+# storage
+db|KursinisCalc.(8).cnf
+db|KursinisCalc.(8).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+bin2bcd.vhd
+21a61997cb48f9c3b9dcfed4bc1ea55f
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+g_INPUT_WIDTH
+16
+PARAMETER_SIGNED_DEC
+DEF
+g_DECIMAL_DIGITS
+4
+PARAMETER_SIGNED_DEC
+DEF
+ constraint(i_binary)
+15 downto 0
+PARAMETER_STRING
+USR
+ constraint(o_bcd)
+15 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+Binary_to_BCD:G5
+}
+# lmf
+|altera|10.1|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
 KursinisCalc
 # storage
 db|KursinisCalc.(0).cnf
@@ -2501,7 +2372,7 @@ ON
 # case_insensitive
 # source_file
 kursiniscalc.vhd
-29d910df7020bc21e74eb72e621844a
+4498184b8f67c04ac4719c4d747c51e
 5
 # internal_option {
 HDL_INITIAL_FANOUT_LIMIT
