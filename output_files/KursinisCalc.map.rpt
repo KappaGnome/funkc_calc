@@ -1,5 +1,5 @@
 Analysis & Synthesis report for KursinisCalc
-Wed Nov 21 01:24:26 2018
+Wed Nov 21 19:31:00 2018
 Quartus II Version 10.1 Build 153 11/29/2010 SJ Web Edition
 
 
@@ -14,13 +14,13 @@ Quartus II Version 10.1 Build 153 11/29/2010 SJ Web Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Registers Removed During Synthesis
-  9. General Register Statistics
- 10. Inverted Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Parameter Settings for Inferred Entity Instance: lpm_mult:Mult0
- 13. Parameter Settings for Inferred Entity Instance: lpm_mult:Mult1
- 14. lpm_mult Parameter Settings by Entity Instance
- 15. Port Connectivity Checks: "to_7seg4:G4"
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for Inferred Entity Instance: lpm_mult:Mult0
+ 14. Parameter Settings for Inferred Entity Instance: lpm_mult:Mult1
+ 15. lpm_mult Parameter Settings by Entity Instance
  16. Elapsed Time Per Partition
  17. Analysis & Synthesis Messages
 
@@ -48,16 +48,16 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +------------------------------------+------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Nov 21 01:24:26 2018    ;
+; Analysis & Synthesis Status        ; Successful - Wed Nov 21 19:31:00 2018    ;
 ; Quartus II Version                 ; 10.1 Build 153 11/29/2010 SJ Web Edition ;
 ; Revision Name                      ; KursinisCalc                             ;
 ; Top-level Entity Name              ; KursinisCalc                             ;
 ; Family                             ; Cyclone III                              ;
-; Total logic elements               ; 126                                      ;
-;     Total combinational functions  ; 90                                       ;
-;     Dedicated logic registers      ; 75                                       ;
-; Total registers                    ; 75                                       ;
-; Total pins                         ; 53                                       ;
+; Total logic elements               ; 177                                      ;
+;     Total combinational functions  ; 146                                      ;
+;     Dedicated logic registers      ; 102                                      ;
+; Total registers                    ; 102                                      ;
+; Total pins                         ; 56                                       ;
 ; Total virtual pins                 ; 0                                        ;
 ; Total memory bits                  ; 0                                        ;
 ; Embedded Multiplier 9-bit elements ; 0                                        ;
@@ -166,9 +166,6 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------------+-----------------+------------------------------+------------------------------------------------------------------+
 ; KursinisCalc.vhd                 ; yes             ; User VHDL File               ; E:/Program Files (x86)/altera/13.1/KursinisCalc/KursinisCalc.vhd ;
 ; seg7.vhd                         ; yes             ; User VHDL File               ; E:/Program Files (x86)/altera/13.1/KursinisCalc/seg7.vhd         ;
-; seg72.vhd                        ; yes             ; User VHDL File               ; E:/Program Files (x86)/altera/13.1/KursinisCalc/seg72.vhd        ;
-; seg73.vhd                        ; yes             ; User VHDL File               ; E:/Program Files (x86)/altera/13.1/KursinisCalc/seg73.vhd        ;
-; seg74.vhd                        ; yes             ; User VHDL File               ; E:/Program Files (x86)/altera/13.1/KursinisCalc/seg74.vhd        ;
 ; lpm_mult.tdf                     ; yes             ; Megafunction                 ; e:/altera/10.1/quartus/libraries/megafunctions/lpm_mult.tdf      ;
 ; db/mult_l8t.tdf                  ; yes             ; Auto-Generated Megafunction  ; E:/Program Files (x86)/altera/13.1/KursinisCalc/db/mult_l8t.tdf  ;
 ; multcore.tdf                     ; yes             ; Megafunction                 ; e:/altera/10.1/quartus/libraries/megafunctions/multcore.tdf      ;
@@ -182,27 +179,27 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 126            ;
+; Estimated Total logic elements              ; 177            ;
 ;                                             ;                ;
-; Total combinational functions               ; 90             ;
+; Total combinational functions               ; 146            ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 45             ;
-;     -- 3 input functions                    ; 31             ;
-;     -- <=2 input functions                  ; 14             ;
+;     -- 4 input functions                    ; 64             ;
+;     -- 3 input functions                    ; 38             ;
+;     -- <=2 input functions                  ; 44             ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 65             ;
-;     -- arithmetic mode                      ; 25             ;
+;     -- normal mode                          ; 96             ;
+;     -- arithmetic mode                      ; 50             ;
 ;                                             ;                ;
-; Total registers                             ; 75             ;
-;     -- Dedicated logic registers            ; 75             ;
+; Total registers                             ; 102            ;
+;     -- Dedicated logic registers            ; 102            ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
-; I/O pins                                    ; 53             ;
+; I/O pins                                    ; 56             ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 75             ;
-; Total fan-out                               ; 539            ;
-; Average fan-out                             ; 1.99           ;
+; Maximum fan-out                             ; 102            ;
+; Total fan-out                               ; 775            ;
+; Average fan-out                             ; 2.15           ;
 +---------------------------------------------+----------------+
 
 
@@ -211,34 +208,64 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                  ; Library Name ;
 +---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------+--------------+
-; |KursinisCalc                   ; 90 (20)           ; 75 (75)      ; 0           ; 0            ; 0       ; 0         ; 53   ; 0            ; |KursinisCalc                                        ;              ;
+; |KursinisCalc                   ; 146 (77)          ; 102 (102)    ; 0           ; 0            ; 0       ; 0         ; 56   ; 0            ; |KursinisCalc                                        ;              ;
 ;    |lpm_mult:Mult0|             ; 40 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |KursinisCalc|lpm_mult:Mult0                         ;              ;
 ;       |mult_l8t:auto_generated| ; 40 (40)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |KursinisCalc|lpm_mult:Mult0|mult_l8t:auto_generated ;              ;
-;    |lpm_mult:Mult1|             ; 9 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |KursinisCalc|lpm_mult:Mult1                         ;              ;
-;       |multcore:mult_core|      ; 9 (9)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |KursinisCalc|lpm_mult:Mult1|multcore:mult_core      ;              ;
-;    |to_7seg2:G2|                ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |KursinisCalc|to_7seg2:G2                            ;              ;
-;    |to_7seg3:G3|                ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |KursinisCalc|to_7seg3:G3                            ;              ;
+;    |lpm_mult:Mult1|             ; 8 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |KursinisCalc|lpm_mult:Mult1                         ;              ;
+;       |multcore:mult_core|      ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |KursinisCalc|lpm_mult:Mult1|multcore:mult_core      ;              ;
 ;    |to_7seg:G1|                 ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |KursinisCalc|to_7seg:G1                             ;              ;
+;    |to_7seg:G2|                 ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |KursinisCalc|to_7seg:G2                             ;              ;
+;    |to_7seg:G3|                 ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |KursinisCalc|to_7seg:G3                             ;              ;
 +---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+--------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                             ;
-+---------------------------------------+----------------------------------------+
-; Register name                         ; Reason for Removal                     ;
-+---------------------------------------+----------------------------------------+
-; HEX2_D[7]~reg0                        ; Stuck at VCC due to stuck port data_in ;
-; HEX3_D[7]~reg0                        ; Stuck at VCC due to stuck port data_in ;
-; HEX3_D[4]~reg0                        ; Stuck at VCC due to stuck port data_in ;
-; HEX3_D[1]~reg0                        ; Stuck at VCC due to stuck port data_in ;
-; HEX1_D[7]~reg0                        ; Stuck at VCC due to stuck port data_in ;
-; HEX0_D[7]~reg0                        ; Stuck at VCC due to stuck port data_in ;
-; REZ[1]                                ; Merged with REZ[0]                     ;
-; REZBIN[1]                             ; Merged with REZBIN[0]                  ;
-; NUMHEX[1]                             ; Merged with NUMHEX[0]                  ;
-; Total Number of Removed Registers = 9 ;                                        ;
-+---------------------------------------+----------------------------------------+
++---------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                              ;
++----------------------------------------+----------------------------------------+
+; Register name                          ; Reason for Removal                     ;
++----------------------------------------+----------------------------------------+
+; HEX0_D[7]~reg0                         ; Stuck at VCC due to stuck port data_in ;
+; HEX1_D[7]~reg0                         ; Stuck at VCC due to stuck port data_in ;
+; HEX2_D[7]~reg0                         ; Stuck at VCC due to stuck port data_in ;
+; HEX3_D[7]~reg0                         ; Stuck at VCC due to stuck port data_in ;
+; REZBIN[12..15]                         ; Stuck at GND due to stuck port data_in ;
+; dbnc                                   ; Stuck at GND due to stuck port data_in ;
+; NUMHEX4[0..3]                          ; Stuck at GND due to stuck port data_in ;
+; HEX3_D[5]~reg0                         ; Stuck at GND due to stuck port data_in ;
+; HEX3_D[3]~reg0                         ; Stuck at GND due to stuck port data_in ;
+; HEX3_D[2]~reg0                         ; Stuck at GND due to stuck port data_in ;
+; HEX3_D[0]~reg0                         ; Stuck at GND due to stuck port data_in ;
+; speed[1..5,10,16,24]                   ; Merged with speed[0]                   ;
+; speed[6,8..9,18]                       ; Merged with speed[11]                  ;
+; speed[7,13,15,17,20..21,23,25]         ; Merged with speed[12]                  ;
+; speed[19,22]                           ; Merged with speed[14]                  ;
+; flag[1]                                ; Merged with flag[0]                    ;
+; speed[0]                               ; Stuck at GND due to stuck port data_in ;
+; REZ[1]                                 ; Merged with REZ[0]                     ;
+; REZBIN[1]                              ; Merged with REZBIN[0]                  ;
+; NUMHEX[1]                              ; Merged with NUMHEX[0]                  ;
+; speed[14]                              ; Stuck at VCC due to stuck port data_in ;
+; Total Number of Removed Registers = 45 ;                                        ;
++----------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                            ;
++---------------+---------------------------+----------------------------------------------------------------------------+
+; Register name ; Reason for Removal        ; Registers Removed due to This Register                                     ;
++---------------+---------------------------+----------------------------------------------------------------------------+
+; REZBIN[15]    ; Stuck at GND              ; NUMHEX4[3], HEX3_D[5]~reg0, HEX3_D[3]~reg0, HEX3_D[2]~reg0, HEX3_D[0]~reg0 ;
+;               ; due to stuck port data_in ;                                                                            ;
+; dbnc          ; Stuck at GND              ; speed[0], speed[14]                                                        ;
+;               ; due to stuck port data_in ;                                                                            ;
+; REZBIN[12]    ; Stuck at GND              ; NUMHEX4[0]                                                                 ;
+;               ; due to stuck port data_in ;                                                                            ;
+; REZBIN[13]    ; Stuck at GND              ; NUMHEX4[1]                                                                 ;
+;               ; due to stuck port data_in ;                                                                            ;
+; REZBIN[14]    ; Stuck at GND              ; NUMHEX4[2]                                                                 ;
+;               ; due to stuck port data_in ;                                                                            ;
++---------------+---------------------------+----------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -246,8 +273,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 75    ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 102   ;
+; Number of registers using Synchronous Clear  ; 26    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -271,7 +298,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; HEX2_D[0]~reg0                          ; 1       ;
 ; HEX2_D[3]~reg0                          ; 1       ;
 ; HEX2_D[4]~reg0                          ; 1       ;
-; Total number of inverted registers = 10 ;         ;
+; HEX3_D[1]~reg0                          ; 1       ;
+; HEX3_D[4]~reg0                          ; 1       ;
+; SK2[0]                                  ; 15      ;
+; SK1[0]                                  ; 24      ;
+; speed[12]                               ; 6       ;
+; Total number of inverted registers = 15 ;         ;
 +-----------------------------------------+---------+
 
 
@@ -280,8 +312,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |KursinisCalc|SK1[0]       ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |KursinisCalc|SK2[0]       ;
+; 3:1                ; 26 bits   ; 52 LEs        ; 26 LEs               ; 26 LEs                 ; Yes        ; |KursinisCalc|cnt[4]       ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |KursinisCalc|speed[12]    ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |KursinisCalc|SK1[3]       ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |KursinisCalc|SK2[0]       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
@@ -386,15 +420,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------+----------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "to_7seg4:G4"                                                                         ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; Port  ; Type   ; Severity ; Details                                                                             ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; seg74 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-
-
 +-------------------------------+
 ; Elapsed Time Per Partition    ;
 +----------------+--------------+
@@ -410,7 +435,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 10.1 Build 153 11/29/2010 SJ Web Edition
-    Info: Processing started: Wed Nov 21 01:24:23 2018
+    Info: Processing started: Wed Nov 21 19:30:56 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off KursinisCalc -c KursinisCalc
 Info: Found 2 design units, including 1 entities, in source file kursiniscalc.vhd
     Info: Found design unit 1: KursinisCalc-main
@@ -427,14 +452,15 @@ Info: Found 2 design units, including 1 entities, in source file seg73.vhd
 Info: Found 2 design units, including 1 entities, in source file seg74.vhd
     Info: Found design unit 1: to_7seg4-Behavioral
     Info: Found entity 1: to_7seg4
+Info: Found 2 design units, including 1 entities, in source file bintobcd.vhd
+    Info: Found design unit 1: bcd-Behavioral
+    Info: Found entity 1: bcd
+Info: Found 2 design units, including 1 entities, in source file bin2bcd.vhd
+    Info: Found design unit 1: binary_bcd-behaviour
+    Info: Found entity 1: binary_bcd
 Info: Elaborating entity "KursinisCalc" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at KursinisCalc.vhd(25): used implicit default value for signal "NUMHEX4" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at KursinisCalc.vhd(29): object "NUMD4" assigned a value but never read
 Warning (10873): Using initial value X (don't care) for net "LEDG[5..4]" at KursinisCalc.vhd(10)
 Info: Elaborating entity "to_7seg" for hierarchy "to_7seg:G1"
-Info: Elaborating entity "to_7seg2" for hierarchy "to_7seg2:G2"
-Info: Elaborating entity "to_7seg3" for hierarchy "to_7seg3:G3"
-Info: Elaborating entity "to_7seg4" for hierarchy "to_7seg4:G4"
 Info: Inferred 2 megafunctions from design logic
     Info: Inferred multiplier megafunction ("lpm_mult") from the following logic: "Mult0"
     Info: Inferred multiplier megafunction ("lpm_mult") from the following logic: "Mult1"
@@ -477,8 +503,10 @@ Warning: Output pins are stuck at VCC or GND
     Warning (13410): Pin "HEX0_D[7]" is stuck at VCC
     Warning (13410): Pin "HEX1_D[7]" is stuck at VCC
     Warning (13410): Pin "HEX2_D[7]" is stuck at VCC
-    Warning (13410): Pin "HEX3_D[1]" is stuck at VCC
-    Warning (13410): Pin "HEX3_D[4]" is stuck at VCC
+    Warning (13410): Pin "HEX3_D[0]" is stuck at GND
+    Warning (13410): Pin "HEX3_D[2]" is stuck at GND
+    Warning (13410): Pin "HEX3_D[3]" is stuck at GND
+    Warning (13410): Pin "HEX3_D[5]" is stuck at GND
     Warning (13410): Pin "HEX3_D[7]" is stuck at VCC
 Info: Timing-Driven Synthesis is running
 Info: Found the following redundant logic cells in design
@@ -487,14 +515,14 @@ Info: Generating hard_block partition "hard_block:auto_generated_inst"
 Warning: Design contains 2 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[4]"
     Warning (15610): No output dependent on input pin "SW[5]"
-Info: Implemented 179 device resources after synthesis - the final resource count might be different
-    Info: Implemented 11 input pins
+Info: Implemented 233 device resources after synthesis - the final resource count might be different
+    Info: Implemented 14 input pins
     Info: Implemented 42 output pins
-    Info: Implemented 126 logic cells
+    Info: Implemented 177 logic cells
 Info: Quartus II Analysis & Synthesis was successful. 0 errors, 18 warnings
     Info: Peak virtual memory: 304 megabytes
-    Info: Processing ended: Wed Nov 21 01:24:26 2018
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Processing ended: Wed Nov 21 19:31:00 2018
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:04
 
 
